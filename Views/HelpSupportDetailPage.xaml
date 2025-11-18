@@ -36,11 +36,11 @@
         <VerticalStackLayout Grid.Column="1">
 
             <Label Text="Nombre"/>
-            <Label />
+            <Label Text="{Binding ProductoSeleccionado.Nombre}"/>
             <Label Text="Descripcion"/>
-            <Label />
+            <Label Text="{Binding ProductoSeleccionado.Descripcion}"/>
             <Label Text="Precio"/>
-            <Label />
+            <Label Text="{Binding ProductoSeleccionado.Precio, StringFormat='{0:C}'}"/>
 
         </VerticalStackLayout>
 
