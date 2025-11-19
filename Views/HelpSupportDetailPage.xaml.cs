@@ -15,6 +15,9 @@ public partial class HelpSupportDetailPage : ContentPage, IQueryAttributable
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         Title = $"Cliente: {query["id"]}";
+
+        var clientId = int.Parse(query["id"].ToString());
+        (BindingContext as HelpSupportDetailsData).ClientId = clientId;
     }
 }
 
@@ -24,14 +27,47 @@ public class HelpSupportDetailsData : BindingUtilObject
     {
         var dataBase = new ShopDbContext();
         Products = new ObservableCollection<Product>(dataBase.Products);
-        //AddCommand = new MiComando(() =>
-        //{
-        //    // Lógica para agregar el producto seleccionado al carrito con la cantidad especificada
-        //},
-        //() => ProductoSeleccionado != null && Cantidad > 0);
+        AddCommand = new MiComando(() =>
+        { 
+            var compra = new Compra(ClientId, ProductoSeleccionado.Id, Cantidad);
+            Compras.Add(compra);
+        },
+        () => true
+        );
     }
 
     public ICommand AddCommand { get; set; }
+
+    private ObservableCollection<Compra> _compras = [];
+
+    public ObservableCollection<Compra> Compras
+    {
+        get => _compras;
+        set
+        {
+            if (_compras != value)
+            {
+                _compras = value;
+                RaisePropertyChanged();
+            }
+        }
+    }
+
+    private int _clientId { get; set; }
+
+    public int ClientId
+    {
+        get => _clientId;
+        set
+        {
+            if (_clientId != value)
+            {
+                _clientId = value;
+                RaisePropertyChanged();
+            }
+        }
+    }
+
 
     private ObservableCollection<Product> _products;
 

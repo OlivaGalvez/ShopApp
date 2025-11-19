@@ -49,9 +49,15 @@
         </Grid>
 
         <Button 
-             Grid.Row="1"
-             Text="Agregar"
+            Grid.Row="1"
+            Text="Agregar"
+            Command="{Binding AddCommand}"
              />
+
+        <CollectionView 
+            Grid.Row="2"
+            ItemsSource="{Binding Compras}"
+            />
     </Grid>
 
 </ContentPage>
