@@ -10,9 +10,14 @@
             Placeholder="Buscar productos..."
             DisplayMemberName="Nombre"
             ShowsResults="True"
+            ItemTemplate="{StaticResource ProductDataTemplate}"
             />
     </Shell.SearchHandler>
 
-    <VerticalStackLayout x:Name="container" />
+    <CollectionView 
+        x:Name="products"
+        ItemTemplate="{StaticResource ProductDataTemplate}"
+        SelectionMode="Single"
+        />
 
 </ContentPage>
