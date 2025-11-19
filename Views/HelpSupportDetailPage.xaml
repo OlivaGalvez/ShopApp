@@ -9,44 +9,49 @@
         <views:HelpSupportDetailsData />
     </ContentPage.BindingContext>
 
-    <Grid ColumnDefinitions="*,*">
+    <Grid RowDefinitions="*,auto,*">
+        <Grid ColumnDefinitions="*,*">
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Products}"
+                 SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
+                 ItemTemplate="{StaticResource ProductDataTemplate}"
+                 HeightRequest="300"
+                 SelectionMode="Single"
+                 />
 
-        <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Products}"
-                    SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
-                    ItemTemplate="{StaticResource ProductDataTemplate}"
-                    HeightRequest="300"
-                    SelectionMode="Single"
-                    />
+                <HorizontalStackLayout VerticalOptions="Center">
+                    <Stepper
+                 Minimum="1"
+                 Maximum="100"
+                 Increment="1"
+                 x:Name="cantidad"
+                 Value="{Binding Cantidad, Mode=TwoWay}"
+                 />
 
-            <HorizontalStackLayout VerticalOptions="Center">
-                <Stepper
-                    Minimum="1"
-                    Maximum="100"
-                    Increment="1"
-                    x:Name="cantidad"
-                    Value="{Binding Cantidad, Mode=TwoWay}"
-                    />
+                    <Label 
+                 VerticalOptions="Center"
+                 Margin="4"
+                 Text="{Binding Value, Source={x:Reference Name=cantidad}}"
+                 />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
 
-                <Label 
-                    VerticalOptions="Center"
-                    Margin="4"
-                    Text="{Binding Value, Source={x:Reference Name=cantidad}}"
-                    />
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
 
-        <VerticalStackLayout Grid.Column="1">
+                <Label Text="Nombre"/>
+                <Label Text="{Binding ProductoSeleccionado.Nombre}"/>
+                <Label Text="Descripcion"/>
+                <Label Text="{Binding ProductoSeleccionado.Descripcion}"/>
+                <Label Text="Precio"/>
+                <Label Text="{Binding ProductoSeleccionado.Precio, StringFormat='{0:C}'}"/>
 
-            <Label Text="Nombre"/>
-            <Label Text="{Binding ProductoSeleccionado.Nombre}"/>
-            <Label Text="Descripcion"/>
-            <Label Text="{Binding ProductoSeleccionado.Descripcion}"/>
-            <Label Text="Precio"/>
-            <Label Text="{Binding ProductoSeleccionado.Precio, StringFormat='{0:C}'}"/>
+            </VerticalStackLayout>
+        </Grid>
 
-        </VerticalStackLayout>
-
+        <Button 
+             Grid.Row="1"
+             Text="Agregar"
+             />
     </Grid>
 
 </ContentPage>

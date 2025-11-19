@@ -1,6 +1,7 @@
 
 using ShopApp.DataAccess;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ShopApp.Views;
 
@@ -23,7 +24,14 @@ public class HelpSupportDetailsData : BindingUtilObject
     {
         var dataBase = new ShopDbContext();
         Products = new ObservableCollection<Product>(dataBase.Products);
+        //AddCommand = new MiComando(() =>
+        //{
+        //    // Lógica para agregar el producto seleccionado al carrito con la cantidad especificada
+        //},
+        //() => ProductoSeleccionado != null && Cantidad > 0);
     }
+
+    public ICommand AddCommand { get; set; }
 
     private ObservableCollection<Product> _products;
 
