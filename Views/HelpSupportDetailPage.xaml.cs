@@ -27,7 +27,7 @@ public class HelpSupportDetailsData : BindingUtilObject
     {
         var dataBase = new ShopDbContext();
         Products = new ObservableCollection<Product>(dataBase.Products);
-        AddCommand = new MiComando(() =>
+        AddCommand = new Command(() =>
         { 
             var compra = new Compra(ClientId, ProductoSeleccionado.Id, Cantidad);
             Compras.Add(compra);
