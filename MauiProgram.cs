@@ -22,8 +22,10 @@ namespace ShopApp
             builder.Services.AddSingleton<INavegacionService, NavegacionService>()
                 .AddTransient<HelpSupportViewModel>()
                 .AddTransient<HelpSupportDetailsViewModel>()
+                .AddTransient<ClientsViewModel>()
                 .AddTransient<HelpSupportPage>()
-                .AddTransient<HelpSupportDetailPage>();
+                .AddTransient<HelpSupportDetailPage>()
+                .AddTransient<ClientsPage>();
 
             var dbContext = new ShopDbContext();
             //Crear bbdd en memoria
