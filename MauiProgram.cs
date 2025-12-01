@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShopApp.DataAccess;
+using ShopApp.Services;
 using ShopApp.Views;
 
 namespace ShopApp
@@ -16,6 +17,8 @@ namespace ShopApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<INavegacionService, NavegacionService>();
 
             var dbContext = new ShopDbContext();
             //Crear bbdd en memoria
