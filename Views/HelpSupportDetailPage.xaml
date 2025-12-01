@@ -5,10 +5,6 @@
               xmlns:vm="clr-namespace:ShopApp.ViewModels"
              Title="HelpSupportDetailPage">
 
-    <ContentPage.BindingContext>
-        <vm:HelpSupportDetailsViewModel />
-    </ContentPage.BindingContext>
-
     <Grid RowDefinitions="*,auto,*">
         <Grid ColumnDefinitions="*,*">
             <VerticalStackLayout>

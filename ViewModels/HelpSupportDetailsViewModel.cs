@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace ShopApp.ViewModels;
-public partial class HelpSupportDetailsViewModel : ViewModelGlobal
+public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttributable
 {
     [ObservableProperty]
     private ObservableCollection<Compra> compras = [];
@@ -35,4 +35,10 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal
     }
 
     public ICommand AddCommand { get; set; }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        var clientId = int.Parse(query["id"].ToString());
+        ClientId = clientId;
+    }
 }
