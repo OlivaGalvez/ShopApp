@@ -5,10 +5,6 @@
              xmlns:vm="clr-namespace:ShopApp.ViewModels"
              Title="HelpSupportPage">
 
-    <ContentPage.BindingContext>
-        <vm:HelpSupportViewModel VisitasPendientes="10" />
-    </ContentPage.BindingContext>
-
     <Grid RowDefinitions="Auto, *">
         <Label Text="{Binding Clients.Count, Mode=OneWay}"
                FontSize="30"/>
