@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ShopApp.DataAccess;
 using ShopApp.Services;
 using ShopApp.Views;
@@ -17,11 +18,22 @@ public partial class ProductsViewModel : ViewModelGlobal
     [ObservableProperty]
     Product productoSeleccionado;
 
+    [ObservableProperty]
+    bool isRefreshing;
+
     public ProductsViewModel(INavegacionService navigationService)
     {
         this.navigationService = navigationService;
         CargarListaProductos();
         PropertyChanged += ProductsViewModel_PropertyChanged;
+    }
+
+    [RelayCommand]
+    private async Task Refresh()
+    {
+        CargarListaProductos();
+        await Task.Delay(3000);
+        IsRefreshing = false;
     }
 
     private async void ProductsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)

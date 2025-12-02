@@ -9,26 +9,26 @@
         <Grid ColumnDefinitions="*,*">
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding Products}"
-                 SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
-                 ItemTemplate="{StaticResource ProductDataTemplate}"
-                 HeightRequest="300"
-                 SelectionMode="Single"
-                 />
+                     SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
+                     ItemTemplate="{StaticResource ProductDataTemplate}"
+                     HeightRequest="300"
+                     SelectionMode="Single"
+                     />
 
                 <HorizontalStackLayout VerticalOptions="Center">
                     <Stepper
-                 Minimum="1"
-                 Maximum="100"
-                 Increment="1"
-                 x:Name="cantidad"
-                 Value="{Binding Cantidad, Mode=TwoWay}"
-                 />
+                         Minimum="1"
+                         Maximum="100"
+                         Increment="1"
+                         x:Name="cantidad"
+                         Value="{Binding Cantidad, Mode=TwoWay}"
+                         />
 
                     <Label 
-                 VerticalOptions="Center"
-                 Margin="4"
-                 Text="{Binding Value, Source={x:Reference Name=cantidad}}"
-                 />
+                         VerticalOptions="Center"
+                         Margin="4"
+                         Text="{Binding Value, Source={x:Reference Name=cantidad}}"
+                         />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
 
@@ -52,8 +52,48 @@
 
         <CollectionView 
             Grid.Row="2"
-            ItemsSource="{Binding Compras}"
-            />
+            ItemsSource="{Binding Compras}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    Text="Eliminar"
+                                    BackgroundColor="LightYellow"
+                                    />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid ColumnDefinitions="*,3*,*,*"
+                              HeightRequest="60"
+                              Padding="4"
+                              >
+                            <Label 
+                                Text="{Binding Cantidad}"
+                                VerticalTextAlignment="Center"
+                                />
+                            <Label 
+                                Text="{Binding ProductoNombre}"
+                                VerticalTextAlignment="Center"
+                                Grid.Column="1"
+                                />
+                            <Label 
+                                Text="{Binding ProductoPrecio, StringFormat='{0:C}'}"
+                                VerticalTextAlignment="Center"
+                                Grid.Column="2"
+                                />
+                            <Label 
+                                 Text="{Binding Total, StringFormat='{0:C}'}"
+                                 VerticalTextAlignment="Center"
+                                 Grid.Column="3"
+                                 /> 
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
     </Grid>
 
 </ContentPage>

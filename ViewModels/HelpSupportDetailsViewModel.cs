@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ShopApp.DataAccess;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -27,7 +28,14 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttrib
         Products = new ObservableCollection<Product>(dataBase.Products);
         AddCommand = new Command(() =>
         {
-            var compra = new Compra(ClientId, ProductoSeleccionado.Id, Cantidad);
+            var compra = new Compra(
+                ClientId, 
+                ProductoSeleccionado.Id, 
+                Cantidad,
+                ProductoSeleccionado.Nombre,
+                ProductoSeleccionado.Precio,
+                ProductoSeleccionado.Precio * Cantidad
+                );
             Compras.Add(compra);
         },
         () => true
@@ -40,5 +48,11 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttrib
     {
         var clientId = int.Parse(query["id"].ToString());
         ClientId = clientId;
+    }
+
+    [RelayCommand]
+    private void EliminarCompra(Compra compra)
+    {
+        Compras.Remove(compra);
     }
 }
