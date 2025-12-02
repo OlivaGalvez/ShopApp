@@ -62,6 +62,9 @@
                                 <SwipeItem
                                     Text="Eliminar"
                                     BackgroundColor="LightYellow"
+                                    Command="{Binding BindingContext.EliminarCompraCommand,
+                                    Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding}"
                                     />
                             </SwipeItems>
                         </SwipeView.RightItems>
