@@ -24,11 +24,12 @@ public partial class ProductsViewModel : ViewModelGlobal
         PropertyChanged += ProductsViewModel_PropertyChanged;
     }
 
-    private void ProductsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private async void ProductsViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if(e.PropertyName == nameof(ProductoSeleccionado))
         {
-           var uri = $"{nameof(ProductDetailPage)}?id={ProductoSeleccionado.Id}";
+            var uri = $"{nameof(ProductDetailPage)}?id={ProductoSeleccionado.Id}";
+            await navigationService.GoToAsync(uri);
         }
     }
 

@@ -1,23 +1,12 @@
-
-using ShopApp.DataAccess;
+using ShopApp.ViewModels;
 
 namespace ShopApp.Views;
 
-public partial class ProductDetailPage : ContentPage, IQueryAttributable
+public partial class ProductDetailPage : ContentPage
 {
-	public ProductDetailPage()
+	public ProductDetailPage(ProductDetailsViewModel viewModel)
 	{
 		InitializeComponent();
-	}
-
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
-    {
-        var dbContext = new ShopDbContext();
-        var id = int.Parse(query["id"].ToString());
-
-        var producto = dbContext.Products.First(p => p.Id == id);
-        container.Children.Add(new Label { Text = producto.Nombre, FontAttributes = FontAttributes.Bold, FontSize = 24 });
-        container.Children.Add(new Label { Text = producto.Descripcion});
-        container.Children.Add(new Label { Text = producto.Precio.ToString() });
+		BindingContext = viewModel;
     }
 }

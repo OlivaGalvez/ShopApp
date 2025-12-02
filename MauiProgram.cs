@@ -23,9 +23,13 @@ namespace ShopApp
                 .AddTransient<HelpSupportViewModel>()
                 .AddTransient<HelpSupportDetailsViewModel>()
                 .AddTransient<ClientsViewModel>()
+                .AddTransient<ProductDetailsViewModel>()
+                .AddTransient<ProductsViewModel>()
                 .AddTransient<HelpSupportPage>()
                 .AddTransient<HelpSupportDetailPage>()
-                .AddTransient<ClientsPage>();
+                .AddTransient<ClientsPage>()
+                .AddTransient<ProductDetailPage>()
+                .AddTransient<ProductsPage>();
 
             var dbContext = new ShopDbContext();
             //Crear bbdd en memoria
