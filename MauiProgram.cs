@@ -29,7 +29,10 @@ namespace ShopApp
                 .AddTransient<HelpSupportDetailPage>()
                 .AddTransient<ClientsPage>()
                 .AddTransient<ProductDetailPage>()
-                .AddTransient<ProductsPage>();
+                .AddTransient<ProductsPage>()
+                .AddSingleton(Connectivity.Current)
+                .AddSingleton<CompraService>()
+                .AddSingleton<HttpClient>();
 
             var dbContext = new ShopDbContext();
             //Crear bbdd en memoria
