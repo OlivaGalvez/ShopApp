@@ -11,6 +11,7 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttrib
 {
     private readonly IConnectivity _connectivity;
     private readonly CompraService _compraService;
+    private readonly ShopOutDbContext _outDbContext;
 
     [ObservableProperty]
     private ObservableCollection<Compra> compras = [];
@@ -27,7 +28,10 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttrib
     [ObservableProperty]
     private int cantidad;
 
-    public HelpSupportDetailsViewModel(IConnectivity connectivity, CompraService compraService)
+    public HelpSupportDetailsViewModel(
+        IConnectivity connectivity, 
+        CompraService compraService,
+        ShopOutDbContext outDbContext)
     {
         var dataBase = new ShopDbContext();
         Products = new ObservableCollection<Product>(dataBase.Products);
@@ -48,16 +52,26 @@ public partial class HelpSupportDetailsViewModel : ViewModelGlobal, IQueryAttrib
         _connectivity = connectivity;
         _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         _compraService = compraService;
+        _outDbContext = outDbContext;
     }
 
     [RelayCommand(CanExecute = nameof(StatusConnection))]
     private async Task EnviarCompra()
     {
-        var resultado = await _compraService.EnviarData(Compras);
-        if (resultado)
+        _outDbContext.Database.EnsureCreated();
+
+        foreach (var compra in Compras)
         {
-            await Shell.Current.DisplayAlert("Mensaje", "Se enviaron las compras al servidor backend", "OK");
+            _outDbContext.Compras.Add(new CompraItem(
+                compra.ClientId,
+                compra.ProductId,
+                compra.Cantidad,
+                compra.ProductoPrecio
+                ));
         }
+
+        await _outDbContext.SaveChangesAsync();
+        await Shell.Current.DisplayAlert("Éxito", "Las compras se han guardado localmente.", "OK");
     }
 
     private void Connectivity_ConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)

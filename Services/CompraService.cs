@@ -14,7 +14,7 @@ public class CompraService
 
     public async Task<bool> EnviarData(IEnumerable<Compra> compras)
     { 
-        var uri = "http://172.21.64.1/api/compra";
+        var uri = "http://10.1.102.26/api/compra";
         var body = new
         {
             data = compras
