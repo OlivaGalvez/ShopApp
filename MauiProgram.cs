@@ -35,7 +35,7 @@ namespace ShopApp
                 .AddSingleton(Connectivity.Current)
                 .AddSingleton<CompraService>()
                 .AddSingleton<HttpClient>()
-                .AddSingleton<ShopOutDbContext>();
+                .AddDbContext<ShopOutDbContext>();
 
 #if ANDROID
             builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Android.DatabaseRutaService>();
@@ -46,7 +46,6 @@ namespace ShopApp
 #endif
 
             var dbContext = new ShopDbContext();
-            //Crear bbdd en memoria
             dbContext.Database.EnsureCreated();
             dbContext.Dispose();
 
