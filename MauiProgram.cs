@@ -64,7 +64,7 @@ namespace ShopApp
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
             Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
 
-            return builder.Build();
+            return app;
         }
     }
 }
