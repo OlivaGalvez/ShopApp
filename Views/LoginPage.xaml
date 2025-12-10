@@ -3,10 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShopApp.Views.LoginPage"
              Title="LoginPage">
-    <VerticalStackLayout>
+
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Margin="20,0,20,0"
+        Spacing="20">
+
+        <Image
+            Source="dotnet_bot.png"
+            HorizontalOptions="Center" 
+            HeightRequest="80"
+            WidthRequest="80"/>
+
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Bienvenido a Vaxi Drez"
+            TextColor="#101010"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            />
+
+        <Label
+            Text="Ingrese sus credenciales para iniciar el uso de la App."
+            TextColor="LightSlateGray"
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            />
+
+        <Entry 
+            Text="{Binding Email}"
+            Placeholder="Email"
+            />
+
+        <Entry 
+             Text="{Binding Password}"
+             Placeholder="Password"
+             IsPassword="True"
+             />
+
+        <Button
+            Text="Iniciar Sesión" 
+            HeightRequest="50"
+            FontSize="Medium"
+            BackgroundColor="#1d94ab"
+            Command="{Binding LoginMethodCommand}"
+            />
+
     </VerticalStackLayout>
+    
 </ContentPage>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using ShopApp.DataAccess;
+﻿using ShopApp.DataAccess;
 using ShopApp.Services;
 using ShopApp.ViewModels;
 using ShopApp.Views;
@@ -19,22 +18,39 @@ namespace ShopApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<INavegacionService, NavegacionService>()
+            builder.Services.AddSingleton<AppShell>();
+            builder.Services.AddTransient<ShopOutDbContext>();
+            builder.Services.AddTransient<ShopDbContext>();
+
+            builder.Services.AddSingleton<INavegacionService, NavegacionService>();
+
+            // ViewModels
+            builder.Services
                 .AddTransient<HelpSupportViewModel>()
                 .AddTransient<HelpSupportDetailsViewModel>()
                 .AddTransient<ClientsViewModel>()
                 .AddTransient<ProductDetailsViewModel>()
                 .AddTransient<ProductsViewModel>()
                 .AddTransient<ResumenViewModel>()
+                .AddTransient<LoginViewModel>();
+
+            // Pages 
+            builder.Services
                 .AddTransient<HelpSupportPage>()
                 .AddTransient<HelpSupportDetailPage>()
                 .AddTransient<ClientsPage>()
                 .AddTransient<ProductDetailPage>()
                 .AddTransient<ProductsPage>()
                 .AddTransient<ResumenPage>()
+                .AddTransient<LoginPage>(); 
+
+            // Services y otras dependencias (Ciclo de vida mantenido)
+            builder.Services
                 .AddSingleton(Connectivity.Current)
                 .AddSingleton<CompraService>()
-                .AddSingleton<HttpClient>();
+                .AddSingleton<HttpClient>()
+                .AddSingleton<SecurityService>();
+
 
 #if ANDROID
             builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Android.DatabaseRutaService>();
@@ -43,10 +59,6 @@ namespace ShopApp
 #elif WINDOWS
             builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Windows.DatabaseRutaService>();
 #endif
-
-            builder.Services
-                .AddDbContext<ShopOutDbContext>()
-                .AddDbContext<ShopDbContext>();
 
             var app = builder.Build();
 
