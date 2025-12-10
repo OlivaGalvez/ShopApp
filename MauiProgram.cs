@@ -34,8 +34,7 @@ namespace ShopApp
                 .AddTransient<ResumenPage>()
                 .AddSingleton(Connectivity.Current)
                 .AddSingleton<CompraService>()
-                .AddSingleton<HttpClient>()
-                .AddDbContext<ShopOutDbContext>();
+                .AddSingleton<HttpClient>();
 
 #if ANDROID
             builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Android.DatabaseRutaService>();
@@ -45,17 +44,25 @@ namespace ShopApp
             builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Windows.DatabaseRutaService>();
 #endif
 
-            var dbContext = new ShopDbContext();
-            dbContext.Database.EnsureCreated();
-            dbContext.Dispose();
+            builder.Services
+                .AddDbContext<ShopOutDbContext>()
+                .AddDbContext<ShopDbContext>();
+
+            var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+
+                var shopOutContext = serviceProvider.GetRequiredService<ShopOutDbContext>();
+                shopOutContext.Database.EnsureCreated();
+
+                var shopContext = serviceProvider.GetRequiredService<ShopDbContext>();
+                shopContext.Database.EnsureCreated();
+            }
 
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
             Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
-
-
-#if DEBUG
-            builder.Logging.AddDebug();
-#endif
 
             return builder.Build();
         }
