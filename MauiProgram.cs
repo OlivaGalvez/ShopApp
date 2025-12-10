@@ -32,7 +32,16 @@ namespace ShopApp
                 .AddTransient<ProductsPage>()
                 .AddSingleton(Connectivity.Current)
                 .AddSingleton<CompraService>()
-                .AddSingleton<HttpClient>();
+                .AddSingleton<HttpClient>()
+                .AddSingleton<ShopOutDbContext>();
+
+#if ANDROID
+            builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Android.DatabaseRutaService>();
+#elif IOS
+            builder.Services.AddSingleton<IDatabaseRutaService, Platforms.iOS.DatabaseRutaService>();
+#elif WINDOWS
+            builder.Services.AddSingleton<IDatabaseRutaService, Platforms.Windows.DatabaseRutaService>();
+#endif
 
             var dbContext = new ShopDbContext();
             //Crear bbdd en memoria
