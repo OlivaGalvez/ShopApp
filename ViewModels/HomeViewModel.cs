@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ShopApp.Models.Backend.Inmueble;
 using ShopApp.Services;
+using ShopApp.Views;
 using System.Collections.ObjectModel;
 
 namespace ShopApp.ViewModels;
@@ -11,15 +13,20 @@ public partial class HomeViewModel : ViewModelGlobal
     string nombreUsuario;
 
     [ObservableProperty]
+    CategoryResponse categoriaSeleccionada;
+
+    [ObservableProperty]
     ObservableCollection<CategoryResponse> categories;
 
     public Command GetDataCommand { get; }
 
     private readonly InmuebleService _inmuebleService;
+    private readonly INavegacionService _navegacionService;
 
-    public HomeViewModel(InmuebleService inmuebleService)
+    public HomeViewModel(InmuebleService inmuebleService, INavegacionService navegacionService)
     {
         _inmuebleService = inmuebleService;
+        _navegacionService = navegacionService;
         NombreUsuario = Preferences.Get("nombre", string.Empty);
         GetDataCommand = new Command(async () => await LoadDataAsync());
         GetDataCommand.Execute(this);
@@ -47,5 +54,12 @@ public partial class HomeViewModel : ViewModelGlobal
         {
             IsBusy = false;
         }
+    }
+
+    [RelayCommand]
+    async Task CategoryEventSelected()
+    {
+        var uri = $"{nameof(InmuebleListPage)}?id={CategoriaSeleccionada.Id}";
+        await _navegacionService.GoToAsync(uri);
     }
 }

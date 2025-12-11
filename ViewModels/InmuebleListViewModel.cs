@@ -2,6 +2,7 @@
 using ShopApp.Models.Backend.Inmueble;
 using ShopApp.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace ShopApp.ViewModels;
 
@@ -20,9 +21,10 @@ public partial class InmuebleListViewModel : ViewModelGlobal, IQueryAttributable
         _inmuebleService = inmuebleService;
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         var id = int.Parse(query["id"].ToString());
+        await LoadDataAsync(id);
     }
 
     public async Task LoadDataAsync(int category)
