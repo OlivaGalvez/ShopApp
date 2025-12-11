@@ -1,5 +1,12 @@
-﻿namespace ShopApp.ViewModels;
+﻿using CommunityToolkit.Mvvm.Input;
 
-public class RegistroViewModel
+namespace ShopApp.ViewModels;
+
+public partial class RegistroViewModel : ViewModelGlobal
 {
+    [RelayCommand]
+    private async Task NavegarLogin()
+    {
+        await Shell.Current.GoToAsync("LoginPage");
+    }
 }

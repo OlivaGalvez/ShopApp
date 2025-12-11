@@ -39,7 +39,7 @@ public partial class LoginViewModel : ViewModelGlobal
     }
 
     [RelayCommand]
-    private async Task GoToRegister()
+    private async Task NavegarRegistro()
     {
         await Shell.Current.GoToAsync("RegistroPage");
     }

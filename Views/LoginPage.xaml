@@ -10,10 +10,10 @@
         Spacing="20">
 
         <Image
-            Source="dotnet_bot.png"
+            Source="login.png"
             HorizontalOptions="Center" 
-            HeightRequest="80"
-            WidthRequest="80"/>
+            HeightRequest="150"
+            WidthRequest="150"/>
 
         <Label 
             Text="Bienvenido a Vaxi Drez"
@@ -58,7 +58,7 @@
                             TextColor="#1d94ab"
                             TextDecorations="Underline">
                             <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                                <TapGestureRecognizer Command="{Binding NavegarRegistroCommand}" />
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>

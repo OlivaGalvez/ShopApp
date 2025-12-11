@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShopApp.Views.RegistroPage"
              Title="RegistroPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout
+    VerticalOptions="Center"
+    Margin="20,0,20,0"
+    Spacing="20">
+
+        <Image
+        Source="dotnet_bot.png"
+        HorizontalOptions="Center" 
+        HeightRequest="100"
+        WidthRequest="100"/>
+
+        <HorizontalStackLayout
+        HorizontalOptions="Center">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="¿Ya tienes cuenta? "/>
+                        <Span Text="Inicia Sesion"
+                        TextColor="#1d94ab"
+                        TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavegarLoginCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
