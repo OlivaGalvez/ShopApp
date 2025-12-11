@@ -22,7 +22,7 @@ public class InmuebleService
     {
         var uri = $"{settings.UrlBase}/api/category";
         client.DefaultRequestHeaders.Authorization = 
-            new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
+            new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", string.Empty));
 
         var resultado = await client.GetStringAsync(uri);
 

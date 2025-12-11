@@ -46,7 +46,8 @@ namespace ShopApp
                 .AddTransient<LoginViewModel>()
                 .AddTransient<HomeViewModel>()
                 .AddTransient<BookmarkViewModel>()
-                .AddTransient<SettingsViewModel>();
+                .AddTransient<SettingsViewModel>()
+                .AddTransient<InmuebleListViewModel>();
 
             // Pages 
             builder.Services
@@ -59,7 +60,8 @@ namespace ShopApp
                 .AddTransient<LoginPage>()
                 .AddTransient<HomePage>()
                 .AddTransient<BookmarkPage>()
-                .AddTransient<SettingsPage>(); 
+                .AddTransient<SettingsPage>()
+                .AddTransient<InmuebleListPage>(); 
 
             // Services y otras dependencias (Ciclo de vida mantenido)
             builder.Services
