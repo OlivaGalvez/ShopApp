@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ShopApp.Models.Backend.Login;
+using ShopApp.Services;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ShopApp.ViewModels;
 
@@ -24,6 +25,14 @@ public partial class RegistroViewModel : ViewModelGlobal
 
     [ObservableProperty]
     private string password;
+
+    private readonly SecurityService _securityService;
+
+    public RegistroViewModel(SecurityService securityService)
+    {
+        _securityService = securityService;
+    }
+
 
     [RelayCommand]
     private async Task RegistrarUsuario()
@@ -51,10 +60,26 @@ public partial class RegistroViewModel : ViewModelGlobal
             return;
         }
 
-        // Lógica para registrar al usuario...
+        RegistroRequest registroRequest = new ()
+        {
+            Nombre = Nombre,
+            Apellido = Apellido,
+            Email = Email,
+            UserName = Username,
+            Telefono = Telefono,
+            Password = Password
+        };
 
-        await Application.Current.MainPage.DisplayAlert("Éxito", "Usuario registrado correctamente.", "Aceptar");
-        await Shell.Current.GoToAsync("..");
+        var resultado = await _securityService.Registro(registroRequest);
+
+        if (resultado)
+        {
+            Application.Current.MainPage = new AppShell();
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("Mensaje", "Error al realizar el registro", "Aceptar");
+        }
     }
 
     private bool ValidarEmail(string email)
