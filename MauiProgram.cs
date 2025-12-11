@@ -65,6 +65,7 @@ namespace ShopApp
             builder.Services
                 .AddSingleton(Connectivity.Current)
                 .AddSingleton<CompraService>()
+                .AddSingleton<InmuebleService>()
                 .AddSingleton<HttpClient>()
                 .AddSingleton<SecurityService>();
 
