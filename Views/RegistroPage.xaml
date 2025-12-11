@@ -3,26 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShopApp.Views.RegistroPage"
              Title="RegistroPage">
+
     <VerticalStackLayout
-    VerticalOptions="Center"
-    Margin="20,0,20,0"
-    Spacing="20">
+        VerticalOptions="Center"
+        Margin="20,0,20,0"
+        Spacing="20">
 
         <Image
-        Source="dotnet_bot.png"
-        HorizontalOptions="Center" 
-        HeightRequest="100"
-        WidthRequest="100"/>
+            Source="dotnet_bot.png"
+            HorizontalOptions="Center" 
+            HeightRequest="100"
+            WidthRequest="100"/>
+
+        <Label 
+            Text="Crea tu Cuenta"
+            TextColor="#101010"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            />
+
+        <Label
+            Text="Ingresa tu informacion para crear tu cuenta de acceso a nuestra App."
+            TextColor="LightSlateGray"
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            />
+
+        <Entry 
+            Text="{Binding Nombre}"
+            Placeholder="Nombre" />
+
+        <Entry 
+            Text="{Binding Apellido}"
+            Placeholder="Apellido" />
+
+        <Entry 
+            Text="{Binding Email}"
+            Placeholder="Email"
+            Keyboard="Email" />
+
+        <Entry 
+            Text="{Binding Username}"
+            Placeholder="Username" />
+
+        <Entry 
+            Text="{Binding Telefono}"
+            Placeholder="Telefono"
+            Keyboard="Telephone" />
+
+        <Entry 
+            Text="{Binding Password}"
+            Placeholder="Password"
+            IsPassword="True" />
+
+        <Button
+            Text="Registrar Usuario" 
+            Command="{Binding RegistrarUsuarioCommand}"
+            HeightRequest="50"
+            FontSize="Medium"
+            BackgroundColor="#1d94ab"
+            Margin="0,10,0,0" />
 
         <HorizontalStackLayout
-        HorizontalOptions="Center">
+            HorizontalOptions="Center">
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="¿Ya tienes cuenta? "/>
                         <Span Text="Inicia Sesion"
-                        TextColor="#1d94ab"
-                        TextDecorations="Underline">
+                            TextColor="#1d94ab"
+                            TextDecorations="Underline">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavegarLoginCommand}" />
                             </Span.GestureRecognizers>
