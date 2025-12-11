@@ -45,6 +45,8 @@
                     SelectionMode="Single"
                     HeightRequest="50"
                     ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding CategoriaSeleccionada}"
+                    SelectionChangedCommand="{Binding CategoryEventSelectedCommand}"
                     BackgroundColor="White"
                     >
                     <CollectionView.ItemsLayout>
