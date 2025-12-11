@@ -38,6 +38,12 @@ public partial class LoginViewModel : ViewModelGlobal
         }
     }
 
+    [RelayCommand]
+    private async Task GoToRegister()
+    {
+        await Shell.Current.GoToAsync("RegistroPage");
+    }
+
     private void _connectivity_ConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)
     {
         LoginMethodCommand.NotifyCanExecuteChanged();

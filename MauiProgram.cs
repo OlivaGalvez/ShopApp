@@ -47,7 +47,8 @@ namespace ShopApp
                 .AddTransient<HomeViewModel>()
                 .AddTransient<BookmarkViewModel>()
                 .AddTransient<SettingsViewModel>()
-                .AddTransient<InmuebleListViewModel>();
+                .AddTransient<InmuebleListViewModel>()
+                .AddTransient<RegistroViewModel>();
 
             // Pages 
             builder.Services
@@ -61,7 +62,8 @@ namespace ShopApp
                 .AddTransient<HomePage>()
                 .AddTransient<BookmarkPage>()
                 .AddTransient<SettingsPage>()
-                .AddTransient<InmuebleListPage>(); 
+                .AddTransient<InmuebleListPage>()
+                .AddTransient<RegistroPage>(); 
 
             // Services y otras dependencias (Ciclo de vida mantenido)
             builder.Services
@@ -96,6 +98,7 @@ namespace ShopApp
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
             Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
             Routing.RegisterRoute(nameof(InmuebleListPage), typeof(InmuebleListPage));
+            Routing.RegisterRoute(nameof(RegistroPage), typeof(RegistroPage));
 
             return app;
         }

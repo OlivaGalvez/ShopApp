@@ -48,6 +48,24 @@
             Command="{Binding LoginMethodCommand}"
             />
 
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="¿No estás registrado? "/>
+                        <Span Text="Regístrate ahora"
+                            TextColor="#1d94ab"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
     
 </ContentPage>
