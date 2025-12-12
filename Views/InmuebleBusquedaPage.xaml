@@ -34,16 +34,7 @@
                 BackgroundColor="White"
                 Placeholder="Buscar inmueble"
                 Text="{Binding SearchText, Mode=TwoWay}"
-               >
-                <SearchBar.Behaviors>
-                    <toolkit:UserStoppedTypingBehavior
-                        Command="{Binding EjecutarBusqueda}"
-                        StoppedTypingTimeThreshold="1000"
-                        MinimumLengthThreshold="3"
-                        ShouldDismissKeyboardAutomatically="True"
-                        />
-                </SearchBar.Behaviors>
-                
+                SearchCommand="{Binding EjecutarBusqueda}"  >
             </SearchBar>
 
         </Grid>
