@@ -74,4 +74,13 @@ public class InmuebleService
 
         return true;
     }
+
+    public async Task<List<InmuebleResponse>> GetBookmarks()
+    {
+        var uri = $"{settings.UrlBase}/api/inmueble/bookmark";
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", string.Empty));
+        var resultado = await client.GetStringAsync(uri);
+        return JsonConvert.DeserializeObject<List<InmuebleResponse>>(resultado);
+    }
 }
