@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Configuration;
 using ShopApp.DataAccess;
 using ShopApp.Services;
 using ShopApp.ViewModels;
@@ -21,6 +22,7 @@ namespace ShopApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -103,6 +105,7 @@ namespace ShopApp
             Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
             Routing.RegisterRoute(nameof(InmuebleListPage), typeof(InmuebleListPage));
             Routing.RegisterRoute(nameof(InmuebleDetailPage), typeof(InmuebleDetailPage));
+            Routing.RegisterRoute(nameof(InmuebleBusquedaPage), typeof(InmuebleBusquedaPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegistroPage), typeof(RegistroPage));
 

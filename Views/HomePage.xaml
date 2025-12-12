@@ -33,7 +33,7 @@
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer />
+                    <TapGestureRecognizer Command="{Binding TapBusquedaInmueblesCommand}" />
                 </Border.GestureRecognizers>
             </Border>
 

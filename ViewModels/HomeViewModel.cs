@@ -71,4 +71,11 @@ public partial class HomeViewModel : ViewModelGlobal
         var uri = $"{nameof(InmuebleListPage)}?id={CategoriaSeleccionada.Id}";
         await _navegacionService.GoToAsync(uri);
     }
+
+    [RelayCommand]
+    async Task TapBusquedaInmuebles()
+    {
+        var uri = $"{nameof(InmuebleBusquedaPage)}";
+        await _navegacionService.GoToAsync(uri);
+    }
 }
