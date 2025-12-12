@@ -5,12 +5,13 @@
              xmlns:vm="clr-namespace:ShopApp.ViewModels"
              x:DataType="vm:InmuebleListViewModel"
              x:Class="ShopApp.Views.InmuebleListPage"
-             Title="InmuebleListPage">
+             Title="Lista de Viviendas">
 
     <CollectionView
         Margin="10"
         SelectionMode="Single"
-        ItemsSource="{Binding Inmuebles}">
+        ItemsSource="{Binding Inmuebles}"
+        SelectedItem="{Binding InmuebleSeleccionado, Mode=TwoWay}">
 
         <CollectionView.ItemsLayout>
             <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
