@@ -8,6 +8,9 @@ namespace ShopApp.ViewModels;
 public partial class InmuebleDetailViewModel : ViewModelGlobal, IQueryAttributable
 {
     [ObservableProperty]
+    private string imagenSource;
+
+    [ObservableProperty]
     private InmuebleResponse inmueble;
 
     private InmuebleService _inmuebleService;
@@ -29,6 +32,7 @@ public partial class InmuebleDetailViewModel : ViewModelGlobal, IQueryAttributab
         {
             IsBusy = true;
             Inmueble = await _inmuebleService.GetInmuebleById(inmuebleId);
+            ImagenSource = Inmueble.IsBookmarkEnabled ? "bookmark_fill_icon" : "bookmark_empty_icon";
         }
         catch (Exception e)
         {

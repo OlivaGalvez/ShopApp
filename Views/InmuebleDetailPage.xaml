@@ -40,7 +40,7 @@
                 />
 
             <ImageButton
-                Source="bookmark_fill_icon.png"
+                Source="{Binding ImagenSource}"
                 CornerRadius="10"
                 BackgroundColor="White"
                 HeightRequest="40"
