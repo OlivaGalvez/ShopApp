@@ -62,7 +62,7 @@ public partial class InmuebleDetailViewModel : ViewModelGlobal, IQueryAttributab
         var bookmark = new BookmarkRequest
         {
             InmuebleId = Inmueble.Id,
-            UsuarioId = Preferences.Get("userId", string.Empty)
+            UsuarioId = Preferences.Get("userid", string.Empty)
         };
 
         await _inmuebleService.SaveBookmark(bookmark);
