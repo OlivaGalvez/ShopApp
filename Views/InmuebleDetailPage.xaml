@@ -102,6 +102,10 @@
                         VerticalOptions="Center"
                         />
                 </HorizontalStackLayout>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TextMessageOwnerCommand}" />
+                </Frame.GestureRecognizers>
             </Frame>
 
             <Frame 
@@ -128,6 +132,10 @@
                         HorizontalOptions="StartAndExpand"
                         />
                 </HorizontalStackLayout>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CallOwnerCommand}" />
+                </Frame.GestureRecognizers>
             </Frame>
 
 

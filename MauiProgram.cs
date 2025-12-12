@@ -101,6 +101,7 @@ namespace ShopApp
             Routing.RegisterRoute(nameof(HelpSupportDetailPage), typeof(HelpSupportDetailPage));
             Routing.RegisterRoute(nameof(InmuebleListPage), typeof(InmuebleListPage));
             Routing.RegisterRoute(nameof(InmuebleDetailPage), typeof(InmuebleDetailPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegistroPage), typeof(RegistroPage));
 
             return app;
