@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using ShopApp.Models.Backend.Inmueble;
 using ShopApp.Models.Config;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace ShopApp.Services;
 
@@ -58,5 +59,19 @@ public class InmuebleService
         var resultado = await client.GetStringAsync(uri);
 
         return JsonConvert.DeserializeObject<InmuebleResponse>(resultado);
+    }
+
+    public async Task<bool> SaveBookmark(BookmarkRequest bookmark)
+    {
+        var url = $"{settings.UrlBase}/api/bookmark";
+        var json = JsonConvert.SerializeObject(bookmark);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        client.DefaultRequestHeaders.Authorization =
+           new AuthenticationHeaderValue("bearer", Preferences.Get("accesstoken", string.Empty));
+
+        var response = await client.PostAsync(url, content);
+        if (!response.IsSuccessStatusCode) return false;
+
+        return true;
     }
 }

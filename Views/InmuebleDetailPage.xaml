@@ -36,6 +36,7 @@
                 Padding="5"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
+                Command="{Binding GetBackEventCommand}"
                 />
 
             <ImageButton
@@ -47,6 +48,7 @@
                 Padding="5"
                 HorizontalOptions="EndAndExpand"
                 VerticalOptions="Start"
+                Command="{Binding SaveBookmarkCommand}"
                 />
         </StackLayout>
 
